@@ -1,0 +1,18 @@
+{
+  "name": "todotrack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:nuxt": "pnpm --filter frontend dev",
+    "start:django": "cd apps/backend && python manage.py runserver",
+    "start": "concurrently \"npm run start:nuxt\" \"npm run start:django\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
