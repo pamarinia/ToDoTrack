@@ -2,8 +2,13 @@ from rest_framework import serializers
 
 from .models import ToDoItem
 
-class ToDoItemSerializer(serializers.ModelSerializer):
+class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDoItem
-        fields = '__all__'
-        
+        fields = ['id', 'title']
+
+class DetailTaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ToDoItem
+        fields = ['id', 'title', 'description', 'date', 
+                  'completed']

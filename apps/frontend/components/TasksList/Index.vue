@@ -13,36 +13,19 @@
       <div class="pl-3">Add New Task</div>
     </div>
 
-    <div
-      v-for="task in tasks"
-      :key="task.id"
-      class="flex items-center p-2 justify-between"
-    >
-      <div class="flex items-center">
-        <p class="rounded border size-4 border-zinc-200" />
-        <p class="pl-3">{{ task.title }}</p>
+    <div v-for="task in tasks" :key="task.id">
+      <div
+        class="flex items-center p-2 justify-between"
+        @click="openDetailTask(task.id)"
+      >
+        <div class="flex items-center">
+          <p class="rounded border size-4 border-zinc-200" />
+          <p class="pl-3">{{ task.title }}</p>
+        </div>
+        <IconsArrow />
       </div>
-      <IconsArrow />
-    </div>
 
-    <div class="bg-gray-200 h-px w-full" />
-
-    <div class="flex items-center p-2 justify-between">
-      <div class="flex items-center">
-        <p class="rounded border size-4 border-zinc-200" />
-        <p class="pl-3">Create a database of guest authors</p>
-      </div>
-      <IconsArrow />
-    </div>
-
-    <div class="bg-gray-200 h-px w-full" />
-
-    <div class="flex items-center p-2 justify-between">
-      <div class="flex items-center">
-        <p class="rounded border size-4 border-zinc-200" />
-        <p class="pl-3">Renew driver's license</p>
-      </div>
-      <IconsArrow />
+      <div class="bg-gray-200 h-px w-full" />
     </div>
   </div>
 </template>
@@ -55,7 +38,14 @@ function addNewTask() {
   console.log(isNewTaskVisible.value);
 }
 
+const isDetailTaskVisible = useIsDetailTaskVisible();
+
+function openDetailTask(TaskId) {
+  isDetailTaskVisible.value = true;
+  console.log(isDetailTaskVisible.value, TaskId);
+}
+
 const { data: tasks } = await useFetch(
-  "http://127.0.0.1:8000/api/v1/todolist/newest/"
+  "http://127.0.0.1:8000/api/v1/todolist/tasks"
 );
 </script>
