@@ -21,6 +21,7 @@
         <div class="flex items-center">
           <p class="rounded border size-4 border-zinc-200" />
           <p class="pl-3">{{ task.title }}</p>
+          <p class="pl-3">{{ task.id }}</p>
         </div>
         <IconsArrow />
       </div>
@@ -31,21 +32,25 @@
 </template>
 
 <script setup>
+const { data: tasks } = await useFetch(
+  "http://127.0.0.1:8000/api/v1/todolist/tasks"
+);
+
+const emit = defineEmits(["addNewTask", "openDetailTask"]);
+
 const isNewTaskVisible = useIsNewTaskVisible();
 
 function addNewTask() {
   isNewTaskVisible.value = true;
-  console.log(isNewTaskVisible.value);
 }
 
 const isDetailTaskVisible = useIsDetailTaskVisible();
+const isTaskid = useTaskId();
 
 function openDetailTask(TaskId) {
+  isTaskid.value = TaskId;
   isDetailTaskVisible.value = true;
-  console.log(isDetailTaskVisible.value, TaskId);
 }
 
-const { data: tasks } = await useFetch(
-  "http://127.0.0.1:8000/api/v1/todolist/tasks"
-);
+
 </script>
