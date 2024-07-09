@@ -2,4 +2,4 @@
 
  A To Do List website developed with Vue.js and tailwindcss
  
-![Main page](main_screen.jpg)
+![Main page](data_readme/main_screen.jpg)
